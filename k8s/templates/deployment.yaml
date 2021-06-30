@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-deployment
+spec:
+  replicas: {{ .Values.replicaCountApp }}
+  selector:
+    matchLabels:
+      component: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: adrianowsh/blog
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 4000
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                key: DATABASE_URL
+                name: database-url
+          - name: SECRET_KEY_BASE
+            valueFrom:
+              secretKeyRef:
+                key: SECRET_KEY_BASE
+                name: secret-key-base
+          - name: POOL_SIZE
+            valueFrom:
+              secretKeyRef:
+                key: POOL_SIZE
+                name: pool-size
+
+
+
+
+
+

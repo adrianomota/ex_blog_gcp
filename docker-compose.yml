@@ -1,0 +1,23 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: /bin/sh docker_dev_start.sh
+    ports:
+      - "8080:4000"
+    depends_on:
+      - db
+    links:
+      - db
+    env_file:
+      - ./compose.env
+  db:
+    restart: always
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"

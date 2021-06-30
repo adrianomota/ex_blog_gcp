@@ -1,0 +1,4 @@
+replicaCountApp: 3
+image:
+  repository: adrianowsh/blog
+  tag: latest

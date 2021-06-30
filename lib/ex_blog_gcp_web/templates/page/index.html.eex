@@ -1,0 +1,16 @@
+<section class="phx-hero">
+  <h1>Deploy Docker GCP</h1>
+  <p>Peace of mind from prototype to production</p>
+</section>
+
+<section class="row">
+  <article class="column">
+    <h2>Resources</h2>
+    <ul>
+      <li>
+        <%= link "Get Posts", to: Routes.posts_path(@conn, :index) %>
+      </li>
+    </ul>
+  </article>
+
+</section>
